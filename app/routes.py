@@ -12,11 +12,11 @@ def index():
 
 @app.route('/contato')
 def contato():
-    return render_template('contato.html',titulo="Contatos")
+    return render_template('contato.html',titulo="ENTRE EM CONTATO!")
 
 @app.route('/cadastro')
 def cadastro():
-    return render_template('cadastro.html',titulo="Cadastro")
+    return render_template('cadastro.html',titulo="CADASTRO")
 
 @app.route('/cadastrarUsuario', methods=['POST'])
 def cadastrarUsuario():
@@ -74,3 +74,98 @@ def excluir():
 
     except Exception as e:
         return f'Algo deu errado\n {e}'
+
+@app.route('/consultarNome')
+def consultarNome():
+    try:
+        requisicao = requests.get(f'{link}/cadastro/.json')
+        dicionario = requisicao.json()
+        nomeCadastro= ""
+        for nome in dicionario:
+            nome = dicionario[nome]['nome']
+            if nome == '123':
+                nomeCadastro = nome
+                return nomeCadastro
+    except Exception as e:
+        return f'Algo deu errado\n {e}'
+
+
+@app.route('/atualizarNome')
+def atualizarNome():
+    try:
+        dadosNome = {"nome":"jão"}
+        requisicao = requests.patch(f'{link}/cadastro/-O8miGRj3JAR8IIFe-Rx/.json', data = json.dumps(dadosNome))
+        return 'Atualizado com Sucesso!'
+    except Exception as e:
+        return f'Algo deu errado\n {e}'
+
+@app.route('/consultarEndereco')
+def consultarEndereco():
+    try:
+        requisicao = requests.get(f'{link}/cadastro/.json')
+        dicionario = requisicao.json()
+        enderecoCadastro= ""
+        for dad in dicionario:
+            endereco = dicionario[dad]['endereco']
+            if endereco == 'rua do carlos':
+                enderecoCadastro = endereco
+                return enderecoCadastro
+    except Exception as e:
+        return f'Algo deu errado\n {e}'
+
+@app.route('/atualizarEndereco')
+def atualizarEndereco():
+    try:
+        dadosEndereco = {"endereco":"rua do alan"}
+        requisicao = requests.patch(f'{link}/cadastro/-O8miGRj3JAR8IIFe-Rx/.json', data = json.dumps(dadosEndereco))
+        return 'Atualizado com Sucesso!'
+    except Exception as e:
+        return f'Algo deu errado\n {e}'
+
+@app.route('/consultarCPF')
+def consultarCPF():
+    try:
+        requisicao = requests.get(f'{link}/cadastro/.json')
+        dicionario = requisicao.json()
+        cpfCadastro = ""
+        for das in dicionario:
+            cpf = dicionario[das]['cpf']
+            if cpf == '345':
+                cpfCadastro = cpf
+                return cpfCadastro
+    except Exception as e:
+        return f'Algo deu errado\n {e}'
+
+@app.route('/atualizarCpf')
+def atualizarCpf():
+    try:
+        dadosCpf = {"cpf":"224399"}
+        requisicao = requests.patch(f'{link}/cadastro/-O8miGRj3JAR8IIFe-Rx/.json', data = json.dumps(dadosCpf))
+        return 'Atualizado com Sucesso!'
+    except Exception as e:
+        return f'Algo deu errado\n {e}'
+
+@app.route('/consultarTelefone')
+def consultarTelefone():
+    try:
+        requisicao = requests.get(f'{link}/cadastro/.json')
+        dicionario = requisicao.json()
+        telefoneCadastro = ""
+        for tele in dicionario:
+            tele = dicionario[tele]['telefone']
+            if tele == '2333':
+                telefoneCadastro = tele
+                return telefoneCadastro
+    except Exception as e:
+        return f'Algo deu errado\n {e}'
+
+@app.route('/atualizarTelefone')
+def atualizarTelefone():
+    try:
+        dadosTelefone = {"telefone":"2324399"}
+        requisicao = requests.patch(f'{link}/cadastro/-O8miGRj3JAR8IIFe-Rx/.json', data = json.dumps(dadosTelefone))
+        return 'Atualizado com Sucesso!'
+    except Exception as e:
+        return f'Algo deu errado\n {e}'
+
+
