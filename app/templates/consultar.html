@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1>CONSULTA INDIVIDUAL</h1>
+
+    <div class="consultarCpf">
+        <form action="/consultarUsuario" method="POST">
+         <label class="cons">Informe seu CPF </label>
+         <input type="text" name="registro" id="cpf"/><br><br>
+         <a href="/consultarGeral" class="btn class2">Consultar</a>
+        </form>
+    </div>
+
+{% endblock %}

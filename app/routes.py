@@ -10,6 +10,15 @@ link = "https://flasktintalan-default-rtdb.firebaseio.com/"
 def index():
     return render_template('index.html',titulo="")
 
+
+@app.route('/consultar')
+def consultar():
+    return render_template('consultar.html',titulo="")
+
+@app.route('/atualizarUsu')
+def atualizarUsu():
+    return render_template('atualizar.html',titulo="")
+
 @app.route('/contato')
 def contato():
     return render_template('contato.html',titulo="ENTRE EM CONTATO!")
@@ -83,7 +92,7 @@ def consultarNome():
         nomeCadastro= ""
         for nome in dicionario:
             nome = dicionario[nome]['nome']
-            if nome == '123':
+            if nome == 'joão':
                 nomeCadastro = nome
                 return nomeCadastro
     except Exception as e:
@@ -107,7 +116,7 @@ def consultarEndereco():
         enderecoCadastro= ""
         for dad in dicionario:
             endereco = dicionario[dad]['endereco']
-            if endereco == 'rua do carlos':
+            if endereco == 'rua do alan':
                 enderecoCadastro = endereco
                 return enderecoCadastro
     except Exception as e:
@@ -130,7 +139,7 @@ def consultarCPF():
         cpfCadastro = ""
         for das in dicionario:
             cpf = dicionario[das]['cpf']
-            if cpf == '345':
+            if cpf == '224399':
                 cpfCadastro = cpf
                 return cpfCadastro
     except Exception as e:
@@ -153,7 +162,7 @@ def consultarTelefone():
         telefoneCadastro = ""
         for tele in dicionario:
             tele = dicionario[tele]['telefone']
-            if tele == '2333':
+            if tele == 'cu':
                 telefoneCadastro = tele
                 return telefoneCadastro
     except Exception as e:
@@ -162,10 +171,20 @@ def consultarTelefone():
 @app.route('/atualizarTelefone')
 def atualizarTelefone():
     try:
-        dadosTelefone = {"telefone":"2324399"}
+        dadosTelefone = {"telefone":"123"}
         requisicao = requests.patch(f'{link}/cadastro/-O8miGRj3JAR8IIFe-Rx/.json', data = json.dumps(dadosTelefone))
         return 'Atualizado com Sucesso!'
     except Exception as e:
         return f'Algo deu errado\n {e}'
 
+@app.route('/consultarGeral')
+def consultarGeral():
+    try:
+       telefone = consultarTelefone()
+       cpf = consultarCPF()
+       nome = consultarNome()
+
+       return f'Telefone: {telefone}\n, Nome: {nome}\n, Cpf: {cpf}'
+    except Exception as e:
+        return f'Algo deu errado\n {e}'
 
